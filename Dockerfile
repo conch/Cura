@@ -1,4 +1,4 @@
-FROM ultimaker/cura-build-environment:1
+FROM registry.gitlab.com/ultimaker/cura/cura-build-environment:centos7
 
 # Environment vars for easy configuration
 ENV CURA_APP_DIR=/srv/cura
