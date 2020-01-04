@@ -4,7 +4,7 @@
 from PyQt5.QtCore import pyqtSignal, pyqtProperty, QObject, QVariant  # For communicating data and events to Qt.
 from UM.FlameProfiler import pyqtSlot
 
-import cura.CuraApplication # To get the global container stack to find the current machine.
+#import cura.CuraApplication # To get the global container stack to find the current machine.
 from cura.Settings.GlobalStack import GlobalStack
 from UM.Logger import Logger
 from UM.Scene.Iterator.DepthFirstIterator import DepthFirstIterator

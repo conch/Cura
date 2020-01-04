@@ -12,7 +12,7 @@ from UM.Settings.ContainerRegistry import ContainerRegistry
 from UM.Settings.Interfaces import ContainerInterface, PropertyEvaluationContext
 from UM.Util import parseBool
 
-import cura.CuraApplication
+#import cura.CuraApplication
 
 from . import Exceptions
 from .CuraContainerStack import CuraContainerStack, _ContainerIndexes

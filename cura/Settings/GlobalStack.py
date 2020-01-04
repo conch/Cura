@@ -19,7 +19,7 @@ from UM.Resources import Resources
 from UM.Platform import Platform
 from UM.Util import parseBool
 
-import cura.CuraApplication
+#import cura.CuraApplication
 from cura.PrinterOutput.PrinterOutputDevice import ConnectionType
 
 from . import Exceptions
