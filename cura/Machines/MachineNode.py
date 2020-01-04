@@ -8,7 +8,7 @@ from UM.Signal import Signal
 from UM.Util import parseBool
 from UM.Settings.ContainerRegistry import ContainerRegistry  # To find all the variants for this machine.
 
-import cura.CuraApplication  # Imported like this to prevent circular dependencies.
+#import cura.CuraApplication  # Imported like this to prevent circular dependencies.
 from cura.Machines.ContainerNode import ContainerNode
 from cura.Machines.QualityChangesGroup import QualityChangesGroup  # To construct groups of quality changes profiles that belong together.
 from cura.Machines.QualityGroup import QualityGroup  # To construct groups of quality profiles that belong together.

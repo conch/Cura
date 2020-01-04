@@ -18,8 +18,9 @@ if TYPE_CHECKING:
 #
 class CuraFormulaFunctions:
 
-    def __init__(self, application: "CuraApplication") -> None:
+    def __init__(self, application: "CuraApplication", global_stack) -> None:
         self._application = application
+        self.global_stack = global_stack
 
     # ================
     # Custom Functions
@@ -27,20 +28,22 @@ class CuraFormulaFunctions:
 
     # Gets the default extruder position of the currently active machine.
     def getDefaultExtruderPosition(self) -> str:
-        machine_manager = self._application.getMachineManager()
-        return machine_manager.defaultExtruderPosition
+        #machine_manager = self._application.getMachineManager()
+        #return machine_manager.defaultExtruderPosition
+        return "0" # TODO
 
     # Gets the given setting key from the given extruder position.
     def getValueInExtruder(self, extruder_position: int, property_key: str,
                            context: Optional["PropertyEvaluationContext"] = None) -> Any:
-        machine_manager = self._application.getMachineManager()
+        #machine_manager = self._application.getMachineManager()
 
         if extruder_position == -1:
-            extruder_position = int(machine_manager.defaultExtruderPosition)
+            #extruder_position = int(machine_manager.defaultExtruderPosition)
+            extruder_position = 0 # TODO
 
-        global_stack = machine_manager.activeMachine
+        #global_stack = machine_manager.activeMachine
         try:
-            extruder_stack = global_stack.extruderList[int(extruder_position)]
+            extruder_stack = self.global_stack.extruderList[int(extruder_position)]
         except IndexError:
             if extruder_position != 0:
                 Logger.log("w", "Value for %s of extruder %s was requested, but that extruder is not available. Returning the result form extruder 0 instead" % (property_key, extruder_position))
@@ -61,17 +64,18 @@ class CuraFormulaFunctions:
     # Gets all extruder values as a list for the given property.
     def getValuesInAllExtruders(self, property_key: str,
                                 context: Optional["PropertyEvaluationContext"] = None) -> List[Any]:
-        machine_manager = self._application.getMachineManager()
-        extruder_manager = self._application.getExtruderManager()
+        #machine_manager = self._application.getMachineManager()
+        #extruder_manager = self._application.getExtruderManager()
 
-        global_stack = machine_manager.activeMachine
+        #global_stack = machine_manager.activeMachine
 
         result = []
-        for extruder in extruder_manager.getActiveExtruderStacks():
+        #for extruder in extruder_manager.getActiveExtruderStacks():
+        for extruder in self.global_stack.extruderList: # TODO
             if not extruder.isEnabled:
                 continue
             # only include values from extruders that are "active" for the current machine instance
-            if int(extruder.getMetaDataEntry("position")) >= global_stack.getProperty("machine_extruder_count", "value", context = context):
+            if int(extruder.getMetaDataEntry("position")) >= self.global_stack.getProperty("machine_extruder_count", "value", context = context):
                 continue
 
             value = extruder.getRawProperty(property_key, "value", context = context)
@@ -85,16 +89,16 @@ class CuraFormulaFunctions:
             result.append(value)
 
         if not result:
-            result.append(global_stack.getProperty(property_key, "value", context = context))
+            result.append(self.global_stack.getProperty(property_key, "value", context = context))
 
         return result
 
     # Get the resolve value or value for a given key.
     def getResolveOrValue(self, property_key: str, context: Optional["PropertyEvaluationContext"] = None) -> Any:
-        machine_manager = self._application.getMachineManager()
+        #machine_manager = self._application.getMachineManager()
 
-        global_stack = machine_manager.activeMachine
-        resolved_value = global_stack.getProperty(property_key, "value", context = context)
+        #global_stack = machine_manager.activeMachine
+        resolved_value = self.global_stack.getProperty(property_key, "value", context = context)
 
         return resolved_value
 

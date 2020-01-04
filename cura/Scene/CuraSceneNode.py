@@ -10,7 +10,7 @@ from UM.Math.Polygon import Polygon  # For typing.
 from UM.Scene.SceneNode import SceneNode
 from UM.Scene.SceneNodeDecorator import SceneNodeDecorator  # To cast the deepcopy of every decorator back to SceneNodeDecorator.
 
-import cura.CuraApplication  # To get the build plate.
+#import cura.CuraApplication  # To get the build plate.
 from cura.Settings.ExtruderStack import ExtruderStack  # For typing.
 from cura.Settings.SettingOverrideDecorator import SettingOverrideDecorator  # For per-object settings.
 
