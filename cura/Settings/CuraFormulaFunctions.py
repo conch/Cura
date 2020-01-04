@@ -38,8 +38,7 @@ class CuraFormulaFunctions:
         #machine_manager = self._application.getMachineManager()
 
         if extruder_position == -1:
-            #extruder_position = int(machine_manager.defaultExtruderPosition)
-            extruder_position = 0 # TODO
+            extruder_position = int(self.getDefaultExtruderPosition())
 
         #global_stack = machine_manager.activeMachine
         try:
@@ -71,7 +70,7 @@ class CuraFormulaFunctions:
 
         result = []
         #for extruder in extruder_manager.getActiveExtruderStacks():
-        for extruder in self.global_stack.extruderList: # TODO
+        for extruder in self.global_stack.extruderList:
             if not extruder.isEnabled:
                 continue
             # only include values from extruders that are "active" for the current machine instance
