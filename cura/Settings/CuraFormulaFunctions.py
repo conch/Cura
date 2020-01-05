@@ -30,7 +30,9 @@ class CuraFormulaFunctions:
     def getDefaultExtruderPosition(self) -> str:
         #machine_manager = self._application.getMachineManager()
         #return machine_manager.defaultExtruderPosition
-        return "0" # TODO
+        for extruder in self.global_stack.extruderList:
+            if extruder.isEnabled:
+                return extruder.getMetaDataEntry("position", "0")
 
     # Gets the given setting key from the given extruder position.
     def getValueInExtruder(self, extruder_position: int, property_key: str,
