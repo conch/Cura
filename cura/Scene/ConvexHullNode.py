@@ -27,14 +27,15 @@ class ConvexHullNode(SceneNode):
         self._original_parent = parent
 
         # Color of the drawn convex hull
-        if not Application.getInstance().getIsHeadLess():
-            theme = QtApplication.getInstance().getTheme()
-            if theme:
-                self._color = Color(*theme.getColor("convex_hull").getRgb())
-            else:
-                self._color = Color(0, 0, 0)
-        else:
-            self._color = Color(0, 0, 0)
+        #if not Application.getInstance().getIsHeadLess():
+        #    theme = QtApplication.getInstance().getTheme()
+        #    if theme:
+        #        self._color = Color(*theme.getColor("convex_hull").getRgb())
+        #    else:
+        #        self._color = Color(0, 0, 0)
+        #else:
+        #    self._color = Color(0, 0, 0)
+        self._color = Color(0, 0, 0)
 
         # The y-coordinate of the convex hull mesh. Must not be 0, to prevent z-fighting.
         self._mesh_height = 0.1
